@@ -2,7 +2,7 @@ ClamAV scripts to allow On Access scanning for OSX in a multi-user environment.
 
 Installation of software is mostly through HomeBrew: https://brew.sh/
 
-brew install clamp
+brew install clamav
 brew install fswatch
 
 In clamd.conf:
