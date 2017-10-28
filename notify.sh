@@ -12,6 +12,7 @@ DATE=`date +%Y-%m-%d:%H:%M:%S`
 FILENAME=$(basename $CLAM_VIRUSEVENT_FILENAME)
 DIR=$(echo $CLAM_VIRUSEVENT_FILENAME | sed -E 's/'"$FILENAME"'//g')
 OWNER=$(stat -f %Su $DIR)
-HOME=$(eval echo "~$OWNER")
+HOME=$(eval echo "~$OWNER"
+UID=$(id -u $OWNER))
 sudo -u "$OWNER" echo "$DATE $CLAM_VIRUSEVENT_FILENAME $CLAM_VIRUSEVENT_VIRUSNAME" >> "$HOME/Documents/Quarantine/filelist.txt"
-sudo -u "$OWNER" /usr/bin/osascript -e "display notification \"$CLAM_VIRUSEVENT_FILENAME\" with Title \"ClamAV - $CLAM_VIRUSEVENT_VIRUSNAME\""
+launchctl bootstrap gui/"$UID" /usr/bin/osascript -e "display notification \"$CLAM_VIRUSEVENT_FILENAME\" with Title \"ClamAV - $CLAM_VIRUSEVENT_VIRUSNAME\""
