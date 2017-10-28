@@ -15,4 +15,5 @@ OWNER=$(stat -f %Su $DIR)
 HOME=$(eval echo "~$OWNER")
 UID=$(id -u $OWNER))
 sudo -u "$OWNER" echo "$DATE $CLAM_VIRUSEVENT_FILENAME $CLAM_VIRUSEVENT_VIRUSNAME" >> "$HOME/Documents/Quarantine/filelist.txt"
-launchctl bootstrap gui/"$UID" /usr/bin/osascript -e "display notification \"$CLAM_VIRUSEVENT_FILENAME\" with Title \"ClamAV - $CLAM_VIRUSEVENT_VIRUSNAME\""
+## Closest I've found, but doesn't work
+## launchctl asuser "$UID" /usr/bin/osascript -e "display notification \"$CLAM_VIRUSEVENT_FILENAME\" with Title \"ClamAV - $CLAM_VIRUSEVENT_VIRUSNAME\""
